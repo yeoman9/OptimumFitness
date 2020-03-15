@@ -3,5 +3,8 @@
     name: string;
     email: string;   
     mobile: string;
-    doj: string; 
+    dateOfJoin: string; 
+    lastDate: string; 
+    gender: string;
+    isActive: boolean;
 }
