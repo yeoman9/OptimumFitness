@@ -4,13 +4,21 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
 import { CustomerComponent } from './customer/customer.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 const routes: Routes = [
     { path: '', 
       component: HomeComponent, canActivate: [AuthGuard],
       children: [
         { path: 'addCustomer', 
-        component: CustomerComponent, canActivate: [AuthGuard]}]
+          component: CustomerComponent, 
+          canActivate: [AuthGuard]
+        },
+        { path: 'listCustomer', 
+          component: CustomerListComponent, 
+          canActivate: [AuthGuard]
+        }
+      ]
     },
     { path: 'login', component: LoginComponent },
     

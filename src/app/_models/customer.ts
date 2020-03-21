@@ -3,6 +3,7 @@
     name: string;
     email: string;   
     mobile: string;
+    pin: string;
     dateOfJoin: string; 
     lastDate: string; 
     gender: string;

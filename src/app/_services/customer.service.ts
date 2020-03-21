@@ -11,5 +11,8 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
   addCustomer(formData : JSON) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/add`,formData);
-}
+  }
+  listCustomers() {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/list`,{});
+  }
 }
