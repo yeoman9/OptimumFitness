@@ -24,6 +24,13 @@
                         <div *ngIf="f.mobile.errors">Mobile is required</div>
                     </div>
                 </div>
+                <div class="form-group col-md-3">
+                    <label for="pin">PIN</label>
+                    <input type="text" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
+                    <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobile.errors">PIN is required</div>
+                    </div>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
@@ -50,14 +57,32 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row">                
                 <div class="form-group col-md-3">
-                    <label for="pin">PIN</label>
-                    <input type="text" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
-                    <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
-                        <div *ngIf="f.mobile.errors">PIN is required</div>
+                    <label for="kycType">KYC Type</label>
+                    <select class="selectpicker" formControlName="kycType" class="form-control" data-live-search="true">
+                      <option value="AADHAR" selected>AADHAR</option>
+                      <option value="PAN">PAN</option>
+                      <option value="DL">DL</option>
+                    </select>
+                </div>        
+                <div class="form-group col-md-3">
+                    <label for="docNumber">Doc Number</label>
+                    <input type="text" formControlName="docNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.docNumber.errors }" />
+                </div>    
+                <div class="form-group col-md-3"> 
+                    <label for="docImage">Doc Image</label>
+                    <div class="btn-file">
+                        <input formControlName="docImage" id="docImage" name="docImage" type="file" (change)="uploadDocImage($event)">
                     </div>
-                </div>
+                </div>  
+                <div class="form-group col-md-3">
+                    <div class="image-preview" *ngIf="docImageUrl">
+                        <img [src]="docImageUrl" height="75" />                 
+                    </div> 
+                </div> 
+            </div>
+            <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="gender">Gender</label>
                     <select class="selectpicker" formControlName="gender" class="form-control" data-live-search="true">
@@ -65,7 +90,18 @@
                       <option value="FEMALE">FEMALE</option>
                       <option value="UNKNOWN">UNKNOWN</option>
                     </select>
-                </div>                
+                </div>
+                <div class="form-group col-md-3"> 
+                    <label for="avatar">Photo</label>
+                    <div class="btn-file">
+                        <input formControlName="avatar" id="avatar" name="avatar" type="file" (change)="uploadAvatar($event)">
+                    </div>
+                </div>  
+                <div class="form-group col-md-3">
+                    <div class="image-preview" *ngIf="avatarUrl">
+                        <img [src]="avatarUrl" height="75" />                 
+                    </div> 
+                </div> 
             </div>
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

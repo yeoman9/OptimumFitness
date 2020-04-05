@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class CustomerService {
 
   constructor(private http: HttpClient) { }
-  addCustomer(formData : JSON) {
+  addCustomer(formData : FormData) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/add`,formData);
   }
   listCustomers() {

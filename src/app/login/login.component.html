@@ -1,6 +1,6 @@
-﻿<div class="col-md-6 offset-md-3 mt-5">
+﻿<div class="col-md-4 offset-md-4 mt-5">
     <div class="card">
-        <h4 class="card-header">Optimum Fitness</h4>
+        <img class="card-img-top bg-light" src="../assets/img/logo.png" alt="Optimum Fitness">
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -17,10 +17,13 @@
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
+                <div  class="clearfix">
+                    <button [disabled]="loading" class="btn btn-primary float-right">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>
+                </div>
+                
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </form>
         </div>
