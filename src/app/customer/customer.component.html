@@ -14,14 +14,16 @@
                   <label for="email">Email</label>
                   <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                      <div *ngIf="f.email.errors">Email is required</div>
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                   </div>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="mobile">Mobile</label>
                     <input type="text" ng-minlength="10" ng-maxlength="10" (blur)="setPin(customerForm)" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
                     <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
-                        <div *ngIf="f.mobile.errors">Mobile is required</div>
+                        <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+                        <div *ngIf="f.mobile.errors.pattern">Mobile must be a 10 digit number</div>
                     </div>
                 </div>
                 <div class="form-group col-md-3">
@@ -60,15 +62,21 @@
             <div class="form-row">                
                 <div class="form-group col-md-3">
                     <label for="kycType">KYC Type</label>
-                    <select class="selectpicker" formControlName="kycType" class="form-control" data-live-search="true">
+                    <select class="selectpicker" formControlName="kycType" class="form-control" data-live-search="true" [ngClass]="{ 'is-invalid': submitted && f.kycType.errors }">
                       <option value="AADHAR" selected>AADHAR</option>
                       <option value="PAN">PAN</option>
                       <option value="DL">DL</option>
                     </select>
+                    <div *ngIf="submitted && f.kycType.errors" class="invalid-feedback">
+                        <div *ngIf="f.kycType.errors">KYC Type required</div>
+                    </div>                    
                 </div>        
                 <div class="form-group col-md-3">
                     <label for="docNumber">Doc Number</label>
                     <input type="text" formControlName="docNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.docNumber.errors }" />
+                    <div *ngIf="submitted && f.docNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.docNumber.errors">Document number required</div>
+                    </div>
                 </div>    
                 <div class="form-group col-md-3"> 
                     <label for="docImage">Doc Image</label>

@@ -26,8 +26,9 @@ export class CustomerComponent implements OnInit {
      
     this.customerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
-      mobile:['',Validators.required],
+      email: ['', [Validators.required,Validators.email]],
+      mobile:['',[Validators.required,
+          Validators.pattern(/^(\d{10}$)/)]],
       dateOfJoin:['',Validators.required],
       lastDate:['',Validators.required],
       pin:['',Validators.required],
@@ -81,12 +82,18 @@ export class CustomerComponent implements OnInit {
   }
   onSubmit(customerForm) {
     this.submitted = true;
+    this.success='';
+    this.error='';
     // stop here if form is invalid
     if (this.customerForm.invalid) {
         return;
     }
-    this.success='';
-    this.error='';
+    if(this.docImageUrl && !(this.f.kycType.value || this.f.docNumber.value)){
+      this.f.kycType.setErrors(Validators.required);
+      this.f.docNumber.setErrors(Validators.required);
+      return;
+    }
+
     
     const formData = new FormData();
 
@@ -101,12 +108,11 @@ export class CustomerComponent implements OnInit {
     if(this.avatar){
       formData.append("avatar", this.avatar);
     }
-    
-    
     this.customerService.addCustomer(formData)
             .pipe(first())
             .subscribe(
                 data => {
+                    this.submitted = false;
                     this.loading = false;
                     this.success = data.message;                    
                     this.resetForm();
