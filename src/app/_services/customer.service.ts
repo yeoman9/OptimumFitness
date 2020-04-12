@@ -7,12 +7,17 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class CustomerService {
-
+  updateCustomer(formData: FormData) {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/update`,formData);
+  }
   constructor(private http: HttpClient) { }
   addCustomer(formData : FormData) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/add`,formData);
   }
   listCustomers() {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/list`,{});
+  }
+  getCustomer(id: number) {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/get`,id);
   }
 }

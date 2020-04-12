@@ -6,23 +6,27 @@
         <thead>
           <tr>
             <th class="text-center">Id</th>
+            <th class="text-center">Photo</th>
             <th class="text-center">Name</th>
             <th class="text-center">Email</th>
             <th class="text-center">Mobile</th>
             <th class="text-center">PIN</th>
-            <th class="text-center">Save</th>
+            <th class="text-center">View</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let customer of customers">
             <td class="pt-3-half" contenteditable="true">{{customer.id}}</td>
+            <td class="pt-3-half" contenteditable="true">
+              <img *ngIf="!!customer.avatar" src="{{serverUrl}}/{{customer.avatar}}" height="30" width="30" />
+            </td>
             <td class="pt-3-half" contenteditable="true">{{customer.name}}</td>
             <td class="pt-3-half" contenteditable="true">{{customer.email}}</td>
             <td class="pt-3-half" contenteditable="true">{{customer.mobile}}</td>
             <td class="pt-3-half" contenteditable="true">{{customer.pin}}</td>            
-            <td>
-              <span class="table-remove"><button type="button"
-                  class="btn btn-primary btn-rounded btn-sm my-0">Save</button></span>
+            <td>   
+              <button type="button" name="view" id="viewCustomer" (click)="viewCustomer(customer.id)"
+                  class="btn btn-primary btn-rounded btn-sm my-0">View</button>
             </td>
           </tr>
           

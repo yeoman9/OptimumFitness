@@ -1,0 +1,118 @@
+
+  <div class="card">
+    <h4 class="card-header">View Customer</h4>
+    <div class="card-body">
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit(customerForm)">
+            <div class="form-row">
+                <div class="form-group col-md-2"> 
+                    <img class="border border-dark rounded" src="{{serverUrl}}/{{customer.avatar}}" height="150" />
+                </div>
+                <div class="form-group col-md-10">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Email</label>
+                            <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="mobile">Mobile</label>
+                            <input type="text" ng-minlength="10" ng-maxlength="10" (blur)="setPin(customerForm)" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+                            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+                                <div *ngIf="f.mobile.errors.pattern">Mobile must be a 10 digit number</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pin">PIN</label>
+                            <input type="text" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
+                            <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobile.errors">PIN is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+                
+            
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                  <label for="dateOfJoin">Date of Join</label>
+                  <input input type="date" ng-model="myDate" formControlName="dateOfJoin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfJoin.errors }" />
+                  <div *ngIf="submitted && f.dateOfJoin.errors" class="invalid-feedback">
+                      <div *ngIf="f.dateOfJoin.errors">Date of join required</div>
+                  </div>
+              </div>
+              <div class="form-group col-md-1" >
+                  <label for="months">Months</label>
+                  <select class="selectpicker" formControlName="months" class="form-control" #monthSelect
+                  (change)='onMonthSelect(monthSelect.value)' data-live-search="true">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="lastDate">Last Date</label>
+                  <input input type="date" ng-model="myDate" formControlName="lastDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastDate.errors }" />
+                  <div *ngIf="submitted && f.lastDate.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastDate.errors">Last Date required</div>
+                  </div>
+              </div>
+            </div>
+            <div class="form-row">                
+              <div class="form-group col-md-3">
+                  <label for="kycType">KYC Type</label>
+                  <select class="selectpicker" formControlName="kycType" class="form-control" data-live-search="true" [ngClass]="{ 'is-invalid': submitted && f.kycType.errors }">
+                    <option value="AADHAR" selected>AADHAR</option>
+                    <option value="PAN">PAN</option>
+                    <option value="DL">DL</option>
+                  </select>
+                  <div *ngIf="submitted && f.kycType.errors" class="invalid-feedback">
+                      <div *ngIf="f.kycType.errors">KYC Type required</div>
+                  </div>                    
+              </div>        
+              <div class="form-group col-md-3">
+                  <label for="docNumber">Doc Number</label>
+                  <input type="text" formControlName="docNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.docNumber.errors }" />
+                  <div *ngIf="submitted && f.docNumber.errors" class="invalid-feedback">
+                      <div *ngIf="f.docNumber.errors">Document number required</div>
+                  </div>
+              </div>    
+              <div class="form-group col-md-3"> 
+                  <div class="image-preview">
+                    <img src="{{serverUrl}}/{{customer.docImage}}" height="75" />                 
+                </div>
+              </div>  
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                  <label for="gender">Gender</label>
+                  <select class="selectpicker" formControlName="gender" class="form-control" data-live-search="true">
+                    <option value="MALE" selected>MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                    <option value="UNKNOWN">UNKNOWN</option>
+                  </select>
+              </div>               
+            </div>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Update
+            </button>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> 
+            <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div>           
+            </form>
+    </div>
+</div>

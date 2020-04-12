@@ -8,4 +8,8 @@
     lastDate: string; 
     gender: string;
     isActive: boolean;
+    avatar: string;
+	docImage: string;
+	kycType: string;
+	docNumber: string;
 }
