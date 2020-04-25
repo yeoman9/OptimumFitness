@@ -4,8 +4,8 @@ import { first } from 'rxjs/operators';
 import { CustomerService } from '@app/_services';
 import { formatDate } from '@angular/common';
 
-@Component({ templateUrl: 'customer.component.html'})
-export class CustomerComponent implements OnInit {
+@Component({ templateUrl: 'customer-add.component.html'})
+export class CustomerAddComponent implements OnInit {
   customerForm: FormGroup;
   loading = false;
   submitted = false;
@@ -124,10 +124,7 @@ export class CustomerComponent implements OnInit {
                 this.loading = true;
   }
   resetForm() {
-    this.customerForm.reset();
-    Object.keys(this.customerForm.controls).forEach(key => {
-      this.customerForm.get(key).setErrors(null) ;
-    });
+    this.customerForm.reset();    
     this.docImageUrl = null;
     this.avatarUrl = null;
   }

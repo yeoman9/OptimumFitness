@@ -14,8 +14,8 @@ export class CustomerService {
   addCustomer(formData : FormData) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/add`,formData);
   }
-  listCustomers() {
-    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/list`,{});
+  listCustomers(query:string) {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/list`,query);
   }
   getCustomer(id: number) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/get`,id);

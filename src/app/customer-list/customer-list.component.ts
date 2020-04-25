@@ -12,6 +12,7 @@ import { environment } from '@environments/environment';
 })
 export class CustomerListComponent implements OnInit {
   customers: Customer[];
+  query: string = '';
   loading = false;
   error = '';
   success = '';
@@ -26,7 +27,10 @@ export class CustomerListComponent implements OnInit {
     
   ngOnInit() {
     
-    this.customerService.listCustomers()
+    this.route.params.subscribe(params => {
+      this.query = params['query'];
+    });
+    this.customerService.listCustomers(this.query)
     .pipe(first())
     .subscribe(
         data => {
@@ -41,7 +45,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   viewCustomer(id : number){
-    this.router.navigate(["/viewCustomer",id]);
+    this.router.navigate(["/customers/view",id]);
   }
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event

@@ -3,7 +3,7 @@
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
-import { CustomerComponent } from './customer/customer.component';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,18 +17,23 @@ const routes: Routes = [
           component: DashboardComponent, 
           canActivate: [AuthGuard]
         },
-        { path: 'addCustomer', 
-          component: CustomerComponent, 
-          canActivate: [AuthGuard]
+        { path: 'customers', 
+          canActivate: [AuthGuard],
+          children: [
+            { path: 'add', 
+              component: CustomerAddComponent, 
+              canActivate: [AuthGuard]
+            },
+            { path: 'list/:query', 
+              component: CustomerListComponent, 
+              canActivate: [AuthGuard]
+            },
+            { path: 'view/:id', 
+              component: CustomerViewComponent, 
+              canActivate: [AuthGuard]
+            }
+          ]
         },
-        { path: 'listCustomer', 
-          component: CustomerListComponent, 
-          canActivate: [AuthGuard]
-        },
-        { path: 'viewCustomer/:id', 
-          component: CustomerViewComponent, 
-          canActivate: [AuthGuard]
-        }
       ]
     },
     { path: 'login', component: LoginComponent },

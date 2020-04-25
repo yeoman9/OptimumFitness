@@ -10,7 +10,7 @@ import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { CustomerComponent } from './customer/customer.component';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -27,7 +27,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
         AppComponent,
         HomeComponent,
         LoginComponent,
-        CustomerComponent ,
+        CustomerAddComponent ,
         CustomerListComponent ,
         CustomerViewComponent ,
         DashboardComponent ,

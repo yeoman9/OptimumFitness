@@ -15,7 +15,7 @@ export class CustomerViewComponent implements OnInit {
   id: number;
   customer: Customer;
   customerForm: FormGroup;
-  serverUrl : string = environment.apiUrl;
+  imagesUrl : string =environment.apiUrl+'/images';
   submitted = false;
   loading = false;
   error = '';

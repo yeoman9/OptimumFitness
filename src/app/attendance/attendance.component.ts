@@ -34,19 +34,19 @@ export class AttendanceComponent implements OnInit {
 
   onSubmit() {
       this.submitted = true;
-     
+      this.error = '';
+      this.success = '';
       // stop here if form is invalid
       if (this.attendanceForm.invalid) {
           return;
       }
-      this.error = '';
-      this.success = '';
 
       this.loading = true;
       this.attendanceService.login(this.f.pin.value)
           .pipe(first())
           .subscribe(
               data => {
+                  this.submitted = false;
                   this.success = data.message;
                   this.resetForm();
               },
@@ -59,9 +59,6 @@ export class AttendanceComponent implements OnInit {
   }
   resetForm() {
     this.attendanceForm.reset();
-    Object.keys(this.attendanceForm.controls).forEach(key => {
-      this.attendanceForm.get(key).setErrors(null) ;
-    });
   }
 
 }
