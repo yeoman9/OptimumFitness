@@ -7,6 +7,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 const routes: Routes = [
     { path: '', 
@@ -31,6 +32,7 @@ const routes: Routes = [
       ]
     },
     { path: 'login', component: LoginComponent },
+    { path: 'attendance', component: AttendanceComponent },
     
 
     // otherwise redirect to home

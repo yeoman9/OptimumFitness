@@ -12,8 +12,9 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerViewComponent } from './customer-view/customer-view.component';;
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { CustomerViewComponent } from './customer-view/customer-view.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -29,7 +30,8 @@ import { DashboardComponent } from './dashboard/dashboard.component'
         CustomerComponent ,
         CustomerListComponent ,
         CustomerViewComponent ,
-        DashboardComponent ],
+        DashboardComponent ,
+        AttendanceComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
