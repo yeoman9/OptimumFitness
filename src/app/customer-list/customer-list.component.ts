@@ -15,7 +15,7 @@ export class CustomerListComponent implements OnInit {
   loading = false;
   error = '';
   success = '';
-  serverUrl : string =environment.apiUrl;
+  imagesUrl : string =environment.apiUrl+'/images';
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Customer> = new Subject();
   constructor(private formBuilder: FormBuilder,
@@ -30,9 +30,7 @@ export class CustomerListComponent implements OnInit {
     .pipe(first())
     .subscribe(
         data => {
-            this.loading = false;
-            console.log(JSON.stringify(data));
-            
+            this.loading = false;            
             this.customers = data;
             this.dtTrigger.next();
         },

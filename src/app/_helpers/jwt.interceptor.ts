@@ -9,7 +9,6 @@ export class JwtInterceptor implements HttpInterceptor {
     constructor(private authenticationService: AuthenticationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("intercept :")
         // add authorization header with jwt token if available
         let authToken = this.authenticationService.authTokenValue;
         if (authToken && authToken.token) {

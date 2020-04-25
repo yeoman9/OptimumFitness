@@ -59,9 +59,7 @@ export class CustomerViewComponent implements OnInit {
     .subscribe(
         data => {
             this.loading = false;
-            console.log(JSON.stringify(data));            
             this.customer = data;
-            console.log(data);
             this.customerForm.patchValue(this.customer);
         },
         error => {

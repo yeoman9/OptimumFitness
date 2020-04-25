@@ -15,7 +15,6 @@ export class AuthenticationService {
         this.authTokenSubject = new BehaviorSubject<AuthToken>(
             JSON.parse(localStorage.getItem('authToken')));
         this.authToken = this.authTokenSubject.asObservable();
-        console.log("Auth header:"+ this.authTokenValue );
     }
 
     public get authTokenValue(): AuthToken {
@@ -34,7 +33,6 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
-        console.log("logout called");
         localStorage.removeItem('authToken');
         this.authTokenSubject.next(null);
     }

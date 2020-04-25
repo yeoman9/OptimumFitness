@@ -30,16 +30,24 @@
               </a>
             </li>            
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/listCustomer">
+              <a class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false" href="#customerSubmenu">
                 <i class="fa fa-users" aria-hidden="true"></i>
                 Customers
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"routerLinkActive="active" routerLink="/addCustomer">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                Add 
-              </a>
+              <ul class="collapse list-unstyled" id="customerSubmenu">
+                <li class="nav-item submenu">
+                  <a class="nav-link" routerLinkActive="active" routerLink="/listCustomer">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    List 
+                  </a>
+                </li>
+                <li class="nav-item submenu">
+                  <a class="nav-link"routerLinkActive="active" routerLink="/addCustomer">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Add 
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

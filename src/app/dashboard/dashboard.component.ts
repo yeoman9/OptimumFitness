@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
     .subscribe(
         data => {
             this.loading = false;
-            console.log(JSON.stringify(data));            
             this.dashboard = data;
         },
         error => {
