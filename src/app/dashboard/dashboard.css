@@ -1,0 +1,31 @@
+.bg-primary-light{
+    background: #3490df;
+}
+.bg-success-light{
+    background: #6cbf6c;
+}
+.bg-info-light{
+    background: #6bc6e1;
+}
+.bg-warning-light{
+    background: #f1b55f;
+}
+.bg-danger-light{
+    background: #dc6460;
+}
+
+.text-primary-light{
+    background: #3490df;
+}
+.text-success-light{
+    background: #6cbf6c;
+}
+.text-info-light{
+    background: #6bc6e1;
+}
+.text-warning-light{
+    background: #f1b55f;
+}
+.text-danger-light{
+    background: #dc6460;
+}

@@ -8,6 +8,7 @@ import { Dashboard } from '@app/_models';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  styleUrls:['./dashboard.css']
 })
 export class DashboardComponent implements OnInit {
   dashboard: Dashboard;

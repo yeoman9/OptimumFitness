@@ -25,13 +25,18 @@ export class AttendanceComponent implements OnInit {
     this.attendanceForm = this.formBuilder.group({
       pin: ['', Validators.required]
   });
-
-
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.attendanceForm.controls; }
 
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../assets/sound/alert.wav";
+    audio.load();
+    audio.play();
+  }
+  
   onSubmit() {
       this.submitted = true;
       this.error = '';
@@ -51,7 +56,8 @@ export class AttendanceComponent implements OnInit {
                   this.resetForm();
               },
               error => {
-                  this.error = error; 
+                  this.error = error;
+                  this.playAudio(); 
                   this.resetForm();                 
               });
       this.loading = false;
