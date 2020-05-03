@@ -148,6 +148,9 @@ export class CustomerViewComponent implements OnInit {
                 });    
                 this.loading = true;
   }
+  viewAttendance(id : number){
+    this.router.navigate(["/attendance/detail",id]);
+  }
   resetForm() {
     this.customerForm.reset();
     Object.keys(this.customerForm.controls).forEach(key => {

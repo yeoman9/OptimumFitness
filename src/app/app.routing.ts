@@ -8,6 +8,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';
+import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
 
 const routes: Routes = [
     { path: '', 
@@ -15,6 +16,10 @@ const routes: Routes = [
       children: [
         { path: 'dashboard', 
           component: DashboardComponent, 
+          canActivate: [AuthGuard]
+        },
+        { path: 'attendance/detail/:id', 
+          component: AttendanceDetailComponent, 
           canActivate: [AuthGuard]
         },
         { path: 'customers', 

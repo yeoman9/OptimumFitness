@@ -14,14 +14,17 @@ import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AttendanceComponent } from './attendance/attendance.component';
+import { AttendanceComponent } from './attendance/attendance.component';;
+import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        DataTablesModule
+        DataTablesModule,
+        FullCalendarModule
     ],
     declarations: [
         AppComponent,
@@ -31,7 +34,9 @@ import { AttendanceComponent } from './attendance/attendance.component';
         CustomerListComponent ,
         CustomerViewComponent ,
         DashboardComponent ,
-        AttendanceComponent],
+        AttendanceComponent,
+        AttendanceDetailComponent,
+    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

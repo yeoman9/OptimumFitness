@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +10,10 @@ export class AttendanceService {
   
   login(pin : string) {
     return this.http.post<any>(`${environment.apiUrl}/attendance`,pin);
+  }
+
+  getAttendanceDetail(id : number){
+    return this.http.post<any>(`${environment.apiUrl}/attendance/detail`,id);
   }
   
 }

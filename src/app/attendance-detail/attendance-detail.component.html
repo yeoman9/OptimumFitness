@@ -1,0 +1,20 @@
+<div>
+  
+</div>
+<div class='app-calendar' *ngIf="calendarVisible">
+  <full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    [header]="{
+      left: 'prev,next',
+      center: 'title',
+      right:'today'
+    }"
+    [plugins]="calendarPlugins"
+    [weekends]="calendarWeekends"
+    [events]="calendarEvents"
+  ></full-calendar>
+</div>
+<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+

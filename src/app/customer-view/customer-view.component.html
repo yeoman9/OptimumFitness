@@ -44,9 +44,6 @@
                     </div>
                 </div>
             </div>
-           
-                
-            
             <div class="form-row">
               <div class="form-group col-md-3">
                   <label for="dateOfJoin">Date of Join</label>
@@ -111,6 +108,8 @@
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Update
             </button>
+            <button type="button" name="attendance" id="" (click)="viewAttendance(customer.id)"
+                  class="btn btn-secondary float-right">Attendance</button>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> 
             <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div>           
             </form>
