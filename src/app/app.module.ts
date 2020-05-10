@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';;
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { AttendanceCalendarComponent } from './attendance-detail/attendance-calendar/attendance-calendar.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -36,6 +37,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
         DashboardComponent ,
         AttendanceComponent,
         AttendanceDetailComponent,
+        AttendanceCalendarComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

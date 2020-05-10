@@ -18,7 +18,7 @@ const routes: Routes = [
           component: DashboardComponent, 
           canActivate: [AuthGuard]
         },
-        { path: 'attendance/detail/:id', 
+        { path: 'attendance', 
           component: AttendanceDetailComponent, 
           canActivate: [AuthGuard]
         },
@@ -42,7 +42,7 @@ const routes: Routes = [
       ]
     },
     { path: 'login', component: LoginComponent },
-    { path: 'attendance', component: AttendanceComponent },
+    { path: 'attendanceLogin', component: AttendanceComponent },
     
 
     // otherwise redirect to home

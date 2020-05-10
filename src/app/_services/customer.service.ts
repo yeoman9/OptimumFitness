@@ -20,4 +20,8 @@ export class CustomerService {
   getCustomer(id: number) {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/get`,id);
   }
+
+  searchCustomersByName(searchKey : string) {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/customer/searchByName`,searchKey );
+  }
 }

@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import { EventInput } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import { AttendanceService } from '@app/_services/attendance.service';
+import { Component, OnInit, ViewChild, EventEmitter, Output, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '@app/_services';
+import { AuthenticationService, CustomerService } from '@app/_services';
+import { Customer } from '@app/_models';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-attendance-detail',
@@ -14,39 +12,46 @@ import { AuthenticationService } from '@app/_services';
 })
 export class AttendanceDetailComponent implements OnInit {
 
-  //@ViewChild('calendar',{static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
-
-  calendarPlugins = [dayGridPlugin];
-  calendarWeekends = true;
-  calendarEvents: EventInput[];
+  @ViewChild('search',{static: false}) search : ElementRef;
+  customerList : Customer[];
+  imagesUrl : string =environment.apiUrl+'/images';
   id: number;
   loading = false;
   error = '';
-  success = '';
-  calendarVisible: boolean = false;
+  success = ''; 
+  selectedCustomer : Customer; 
 
-  constructor(private attendanceService: AttendanceService,
+  constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) { }
+    private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.id = +params['id'];
-      console.log("id updated : "+this.id)
-    });
+    
+  }
+  onSearch(searchKey : string){
+    if(searchKey === null || searchKey === ""){
+      this.customerList = [];
 
-    this.attendanceService.getAttendanceDetail(this.id)
-    .pipe(first())
-    .subscribe(
+    }
+    else if(searchKey.length > 2){
+      this.customerService.searchCustomersByName(searchKey)
+      .pipe(first())
+      .subscribe(
         data => {
             this.loading = false;
-            this.calendarEvents = data;
-            this.calendarVisible = true;
+            this.customerList = data;
+            this.error = '';
         },
         error => {
-            this.calendarVisible = false;
             this.error = error;
         });
+    }
+  }
+  showAtteandance(customer : Customer){
+    this.customerList = [];    
+    this.selectedCustomer = customer;
+    this.search.nativeElement.value = customer.name;
+    //this.router.navigate(["/attendance/detail",customer.id]);
   }
 }

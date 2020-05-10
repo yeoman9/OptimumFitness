@@ -1,0 +1,16 @@
+<div class='app-calendar float-right' *ngIf="calendarVisible">
+  <full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    [header]="{
+      left: 'prev,next',
+      center: 'title',
+      right:'today'
+    }"
+    themeSystem="bootstrap"
+    [plugins]="calendarPlugins"
+    [weekends]="calendarWeekends"
+    [events]="calendarEvents"
+  ></full-calendar>
+</div>
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>

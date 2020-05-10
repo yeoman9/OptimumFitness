@@ -1,20 +1,50 @@
-<div>
-  
+<div class="row">
+  <div class="col-md-5">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">Customer</span>
+      </div>
+      <input type="search" #search (keyup)="onSearch(search.value)" class="form-control" id="search" aria-describedby="basic-addon3">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-text1"><i class="fa fa-search text-grey"
+            aria-hidden="true"></i></span>
+      </div>
+    </div>
+    <div class="list-group" style="max-height: 200px; overflow-y:auto;">
+      <div (click)="showAtteandance(customer)" class="list-group-item clearfix" *ngFor="let customer of customerList">
+        <div class="float-left">
+          {{customer.name}}
+        </div>
+        <span class="float-right">
+          <img class="img-responsive" src="{{imagesUrl}}/{{customer.avatar}}" style="max-height: 28px;max-width: 28px;" />
+        </span>
+      </div>
+    </div>
+    <div *ngIf="selectedCustomer">
+      <div class="card hovercard">
+        <div class="cardheader">
+
+        </div>
+        <div class="avatar">
+            <img alt="" src="{{imagesUrl}}/{{selectedCustomer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'"/>
+        </div>
+        <div class="info">
+            <div class="title">
+                <a target="_blank" href="/customers/view/{{selectedCustomer.id}}">{{selectedCustomer.name}}</a>
+            </div>
+            <div class="desc">Mo: {{selectedCustomer.mobile}}</div>
+            <div class="desc">{{selectedCustomer.email}}</div>
+            <div class="desc">Last Date: {{selectedCustomer.lastDate}}</div>
+        </div>
+        <div class="bottom">
+           
+        </div>
+      </div>
+    </div>        
+  </div>
+  <div class="col-md-7">
+    <app-attendance-calendar [customer]="selectedCustomer"></app-attendance-calendar>    
+  </div>
 </div>
-<div class='app-calendar' *ngIf="calendarVisible">
-  <full-calendar
-    #calendar
-    defaultView="dayGridMonth"
-    [header]="{
-      left: 'prev,next',
-      center: 'title',
-      right:'today'
-    }"
-    [plugins]="calendarPlugins"
-    [weekends]="calendarWeekends"
-    [events]="calendarEvents"
-  ></full-calendar>
-</div>
-<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 
 
