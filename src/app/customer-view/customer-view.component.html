@@ -5,7 +5,12 @@
         <form [formGroup]="customerForm" (ngSubmit)="onSubmit(customerForm)">
             <div class="form-row">
                 <div class="form-group col-md-2"> 
-                    <img class="border border-dark rounded" src="{{imagesUrl}}/{{customer.avatar}}" height="150" />
+                    <label class="hoverable text-center" for="avatar">
+                        <img class="rounded-circle" *ngIf="customer" [src]="avatarUrl ? avatarUrl : '../../assets/img/default_profile.png'" height="150" width="150" /> 
+                        <div class="hover-text">Choose file</div>
+                        <div class="background"></div>
+                      </label>                      
+                      <input id="avatar" name="avatar" type="file" (change)="uploadAvatar($event)">
                 </div>
                 <div class="form-group col-md-10">
                     <div class="form-row">
@@ -34,12 +39,20 @@
                                 <div *ngIf="f.mobile.errors.pattern">Mobile must be a 10 digit number</div>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-2">
                             <label for="pin">PIN</label>
                             <input type="text" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.pin.errors }" />
                             <div *ngIf="submitted && f.pin.errors" class="invalid-feedback">
                                 <div *ngIf="f.mobile.errors">PIN is required</div>
                             </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="gender">Gender</label>
+                            <select class="selectpicker" formControlName="gender" class="form-control" data-live-search="true">
+                              <option value="MALE" selected>MALE</option>
+                              <option value="FEMALE">FEMALE</option>
+                              <option value="UNKNOWN">UNKNOWN</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -88,21 +101,14 @@
                       <div *ngIf="f.docNumber.errors">Document number required</div>
                   </div>
               </div>    
-              <div class="form-group col-md-3"> 
-                  <div class="image-preview">
-                    <img src="{{imagesUrl}}/{{customer.docImage}}" height="75" />                 
-                </div>
-              </div>  
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-3">
-                  <label for="gender">Gender</label>
-                  <select class="selectpicker" formControlName="gender" class="form-control" data-live-search="true">
-                    <option value="MALE" selected>MALE</option>
-                    <option value="FEMALE">FEMALE</option>
-                    <option value="UNKNOWN">UNKNOWN</option>
-                  </select>
-              </div>               
+              <div class="form-group col-md-3 border border-light rounded"> 
+                <label class="hoverable text-center" for="docImage">
+                    <img  style="max-height: 130px;"class="img-fluid" *ngIf="customer" [src]="docImageUrl ? docImageUrl : '../../assets/img/no-image-selected.png'" /> 
+                    <div class="hover-text">Choose file</div>
+                    <div class="background"></div>
+                  </label>                  
+                  <input id="docImage" name="docImage" type="file" (change)="uploadDocImage($event)">
+            </div>  
             </div>
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
@@ -112,6 +118,6 @@
                   class="btn btn-secondary float-right">Attendance</button>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> 
             <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div>           
-            </form>
+        </form>
     </div>
 </div>
