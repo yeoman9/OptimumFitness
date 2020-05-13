@@ -9,7 +9,8 @@ import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-customer-view',
-  templateUrl: './customer-view.component.html'
+  templateUrl: './customer-view.component.html',
+  styleUrls: ['./customer-view.css']
 })
 export class CustomerViewComponent implements OnInit {
   id: number;
@@ -61,6 +62,12 @@ export class CustomerViewComponent implements OnInit {
             this.loading = false;
             this.customer = data;
             this.customerForm.patchValue(this.customer);
+            if( this.customer.avatar !==null){
+              this.avatarUrl = this.imagesUrl + "/" + this.customer.avatar;
+            }
+            if( this.customer.docImage !==null){
+              this.docImageUrl = this.imagesUrl + "/" + this.customer.docImage;
+            }
         },
         error => {
             this.error = error;
@@ -124,13 +131,15 @@ export class CustomerViewComponent implements OnInit {
 
     Object.keys(this.f).forEach(key => {
       if(this.f[key].value){
-        formData.append(key, this.f[key].value);
+        if(key != 'avatar' && key !='docImage' ){
+          formData.append(key, this.f[key].value);
+        }          
       }
     });
-    if(this.docImage){
+    if(this.docImage instanceof File){
       formData.append("docImage", this.docImage);
     }
-    if(this.avatar){
+    if(this.avatar instanceof File){
       formData.append("avatar", this.avatar);
     }
     this.customerService.updateCustomer(formData)
@@ -140,7 +149,6 @@ export class CustomerViewComponent implements OnInit {
                     this.submitted = false;
                     this.loading = false;
                     this.success = data.message;                    
-                    this.resetForm();
                 },
                 error => {
                     this.error = error;
@@ -151,12 +159,11 @@ export class CustomerViewComponent implements OnInit {
   viewAttendance(id : number){
     this.router.navigate(["/attendance/detail",id]);
   }
-  resetForm() {
-    this.customerForm.reset();
-    Object.keys(this.customerForm.controls).forEach(key => {
-      this.customerForm.get(key).setErrors(null) ;
-    });
-    this.docImageUrl = null;
-    this.avatarUrl = null;
+  onSelectFile($event){
+
   }
+  getAvatar(avatar: string){
+    return this.imagesUrl + '/' + avatar;
+  }
+  
 }

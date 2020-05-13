@@ -4,7 +4,11 @@ import { first } from 'rxjs/operators';
 import { CustomerService } from '@app/_services';
 import { formatDate } from '@angular/common';
 
-@Component({ templateUrl: 'customer-add.component.html'})
+@Component({
+  selector: 'app-customer-add',
+  templateUrl: 'customer-add.component.html',
+  styleUrls: ['./customer-add.css']
+})
 export class CustomerAddComponent implements OnInit {
   customerForm: FormGroup;
   loading = false;

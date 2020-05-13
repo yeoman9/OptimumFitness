@@ -18,7 +18,7 @@
           <tr *ngFor="let customer of customers">
             <td class="pt-3-half" contenteditable="true">{{customer.id}}</td>
             <td class="pt-3-half" contenteditable="true">
-              <img *ngIf="!!customer.avatar" src="{{imagesUrl}}/{{customer.avatar}}" height="30" width="30" />
+              <img src="{{imagesUrl}}/{{customer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'" height="30" width="30" />
             </td>
             <td class="pt-3-half" contenteditable="true">{{customer.name}}</td>
             <td class="pt-3-half" contenteditable="true">{{customer.email}}</td>
