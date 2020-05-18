@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';;
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ChartsModule } from 'ng2-charts';
 import { AttendanceCalendarComponent } from './attendance-detail/attendance-calendar/attendance-calendar.component';
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { AttendanceCalendarComponent } from './attendance-detail/attendance-cale
         HttpClientModule,
         appRoutingModule,
         DataTablesModule,
+        ChartsModule,
         FullCalendarModule
     ],
     declarations: [

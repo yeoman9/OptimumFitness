@@ -1,22 +1,21 @@
-<div class="card-deck">
-<div class="card bg-primary text-white text-center">
-  <h4 class="card-header">Total Customers</h4>
-  <div class="card-body">
-    <a href="/customers/list/all" class="text-white"><h4>{{dashboard.totalCustomers}}</h4></a>
+<div class="col-md-6">
+  <div class="card text-center shadow mb-4">
+    <div class="card-header ">
+      <h4 class="font-weight-bold">Customers</h4>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <h5 class="card-title">Total : {{dashboard.totalCustomers}}</h5>     
+        <div class="chart-wrapper">
+          <canvas baseChart 
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            [colors]="chartColors"
+            [options]="chartOptions"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+    </div>
   </div>
-</div>
-<div class="card bg-info text-white text-center">
-  <h4 class="card-header">Active Customers</h4>
-  <div class="card-body">
-    <a href="/customers/list/active" class="text-white"><h4>{{dashboard.activeCustomers}}</h4></a>
-  </div>
-</div>
-
-<div class="card bg-danger text-white text-center">
-  <h4 class="card-header">Due Customers</h4>
-  <div class="card-body">
-    <a href="/customers/list/due" class="text-white"><h4>{{dashboard.inActiveCustomers}}</h4></a>
-  </div>
-</div>
-
 </div>

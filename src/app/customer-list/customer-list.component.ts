@@ -19,11 +19,11 @@ export class CustomerListComponent implements OnInit {
   imagesUrl : string =environment.apiUrl+'/images';
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<Customer> = new Subject();
-  constructor(private formBuilder: FormBuilder,
+  constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService) { }
+    private router: Router
+    ) { }
     
   ngOnInit() {
     
