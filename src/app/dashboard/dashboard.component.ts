@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
       render: function (args) {
         const label = args.label,
               value = args.value;
-        return label + ': ' + value;
+        return value;
       }
     }
   }
