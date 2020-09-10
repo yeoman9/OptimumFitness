@@ -72,6 +72,8 @@
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="12">12</option>
                   </select>
               </div>
               <div class="form-group col-md-3">
@@ -114,10 +116,9 @@
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Update
             </button>
-            <button type="button" name="attendance" id="" (click)="viewAttendance(customer.id)"
-                  class="btn btn-secondary float-right">Attendance</button>
+            <button type="button" name="attendance" id="" class="btn btn-secondary float-right">Attendance</button>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> 
-            <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div>           
+            <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div> 
         </form>
     </div>
 </div>

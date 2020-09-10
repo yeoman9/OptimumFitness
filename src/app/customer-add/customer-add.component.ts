@@ -30,7 +30,7 @@ export class CustomerAddComponent implements OnInit {
      
     this.customerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required,Validators.email]],
+      email: ['', Validators.email],
       mobile:['',[Validators.required,
           Validators.pattern(/^(\d{10}$)/)]],
       dateOfJoin:['',Validators.required],

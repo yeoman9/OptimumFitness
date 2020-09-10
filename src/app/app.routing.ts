@@ -5,7 +5,7 @@ import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerViewComponent } from './customer-view/customer-view.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
               canActivate: [AuthGuard]
             },
             { path: 'view/:id', 
-              component: CustomerViewComponent, 
+              component: CustomerDetailComponent, 
               canActivate: [AuthGuard]
             }
           ]

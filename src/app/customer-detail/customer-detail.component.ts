@@ -8,11 +8,11 @@ import { formatDate } from '@angular/common';
 import { environment } from '@environments/environment';
 
 @Component({
-  selector: 'app-customer-view',
-  templateUrl: './customer-view.component.html',
-  styleUrls: ['./customer-view.css']
+  selector: 'app-customer-detail',
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.css']
 })
-export class CustomerViewComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit {
   id: number;
   customer: Customer;
   customerForm: FormGroup;
@@ -157,7 +157,7 @@ export class CustomerViewComponent implements OnInit {
                 this.loading = true;
   }
   viewAttendance(id : number){
-    this.router.navigate(["/attendance/detail",id]);
+    
   }
   onSelectFile($event){
 

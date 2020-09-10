@@ -12,7 +12,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { CustomerAddComponent } from './customer-add/customer-add.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerViewComponent } from './customer-view/customer-view.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';;
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
@@ -35,7 +35,7 @@ import { AttendanceCalendarComponent } from './attendance-detail/attendance-cale
         LoginComponent,
         CustomerAddComponent ,
         CustomerListComponent ,
-        CustomerViewComponent ,
+        CustomerDetailComponent ,
         DashboardComponent ,
         AttendanceComponent,
         AttendanceDetailComponent,
