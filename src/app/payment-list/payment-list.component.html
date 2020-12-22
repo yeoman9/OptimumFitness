@@ -1,0 +1,37 @@
+<div class="card">
+    <h4 class="card-header">Customer List</h4>
+    <div class="card-body">
+      <div id="table">      
+        <table id="dtBasicExample" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
+          <thead>
+            <tr>
+              <th class="text-center">Name</th>
+              <th class="text-center">Photo</th>
+              <th class="text-center">From</th>
+              <th class="text-center">To</th>
+              <th class="text-center">Receipt Date</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of payments">
+              <td class="pt-3-half" contenteditable="true">{{payment.customer.name}}</td>
+              <td class="pt-3-half" contenteditable="true">
+                <img src="{{imagesUrl}}/{{payment.customer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'" height="30" width="30" />
+              </td>
+              <td class="pt-3-half" contenteditable="true">{{payment.paymentFrom}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.paymentTo}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.amount}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.amount}}</td>            
+              <td>   
+                <button type="button" name="view" id="viewCustomer" (click)="viewCustomer(payment.customer.id)"
+                    class="btn btn-primary btn-rounded btn-sm my-0">View</button>
+              </td>
+            </tr>          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

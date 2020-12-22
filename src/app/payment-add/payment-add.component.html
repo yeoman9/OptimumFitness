@@ -1,0 +1,150 @@
+<div class="noPrint">
+  <div class="row">
+      <div class="col-md-5">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Customer</span>
+          </div>
+          <input type="search" #search (keyup)="onSearch(search.value)" class="form-control" id="search" aria-describedby="basic-addon3">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-text1"><i class="fa fa-search text-grey"
+                aria-hidden="true"></i></span>
+          </div>
+        </div>
+        <div class="list-group" style="max-height: 200px; overflow-y:auto;">
+          <div (click)="showAtteandance(customer)" class="list-group-item clearfix" *ngFor="let customer of customerList">
+            <div class="float-left">
+              {{customer.name}}
+            </div>
+            <span class="float-right">
+              <img class="img-responsive" src="{{imagesUrl}}/{{customer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'" style="max-height: 28px;max-width: 28px;" />
+            </span>
+          </div>
+        </div>
+        <div *ngIf="selectedCustomer">
+          <div class="card hovercard">
+            <div class="cardheader">
+    
+            </div>
+            <div class="avatar">
+                <img alt="" src="{{imagesUrl}}/{{selectedCustomer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'"/>
+            </div>
+            <div class="info">
+                <div class="title">
+                    <a target="_blank" href="/customers/view/{{selectedCustomer.id}}">{{selectedCustomer.name}}</a>
+                </div>
+                <div class="desc">Mo: {{selectedCustomer.mobile}}</div>
+                <div class="desc">{{selectedCustomer.email}}</div>
+                <div class="desc">Last Date: {{selectedCustomer.lastDate}}</div>
+            </div>
+            <div class="bottom">
+              
+            </div>
+          </div>
+        </div>        
+      </div>
+      <div class="col-md-7">        
+            <div *ngIf="selectedCustomer" class="form-row">
+              <form [formGroup]="paymentForm" (ngSubmit)="onSubmit(paymentForm)">
+                  <div class="form-row">
+                      <div class="form-group col-md-5">
+                          <label for="paymentFrom">Payment From</label>
+                          <input input type="date" ng-model="myDate" formControlName="paymentFrom" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.paymentFrom.errors }" #paymentFrom />
+                          <div *ngIf="submitted && f.paymentFrom.errors" class="invalid-feedback">
+                              <div *ngIf="f.paymentFrom.errors">Date of join required</div>
+                          </div>
+                      </div>
+                      <div class="form-group col-md-2" >
+                          <label for="months">Months</label>
+                          <select class="selectpicker" formControlName="months" class="form-control" #monthSelect
+                          (change)='onMonthSelect(monthSelect.value)' data-live-search="true">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="6">6</option>
+                              <option value="12">12</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-5">
+                          <label for="paymentTo">Payment To</label>
+                          <input input type="date" ng-model="myDate" formControlName="paymentTo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.paymentTo.errors }" #paymentTo />
+                          <div *ngIf="submitted && f.paymentTo.errors" class="invalid-feedback">
+                              <div *ngIf="f.paymentTo.errors">Last Date required</div>
+                          </div>
+                      </div>                    
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-5">
+                      <label for="amount">Amount (INR)</label>
+                      <input input type="text" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+                      <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                          <div *ngIf="f.amount.errors">Date of join required</div>
+                      </div>
+                  </div>
+                  </div>
+                  <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Print
+                  </button>
+              </form>
+          </div>        
+      </div>
+  </div>  
+</div>
+<div *ngIf="selectedCustomer" id="print-section" class="print">
+  <br>
+  <br>
+  <div style="text-align: center;">
+    <u>Payment Receipt</u>
+  </div>
+  <div style="float: left;">
+    <img class="card-img-top bg-light" src="../assets/img/logo.png" alt="Optimum Fitness" height="100" width="250">
+    <div>
+      <div style="margin-left: 50px;">Vinayak Gold Complex,</div>
+      <div style="margin-left: 25px;">Ajwa Road, Vadodara, Gujarat</div>
+    </div>
+  </div>
+  <div style="float: right; margin-top: 50px; margin-right: 50px;">
+      <diV>Reg Id : <b>{{selectedCustomer.pin}}</b></diV><br>
+      <div>Date : <b>{{ currentDate | date:'dd/MMM/yyyy'}}</b></div>
+  </div> 
+  <div style="clear: both;"></div>
+  <br>
+  <br>
+  <br>
+  <table style="margin-left: auto; margin-right: auto; border-spacing: 0 1em;">
+    <tr>
+      <td>Name: <b>{{selectedCustomer.name}}</b></td>
+      <td>Contact: <b>{{selectedCustomer.mobile}}</b></td>
+    </tr>
+    <tr>
+      <td>Membership period: <b>{{f.months.value}} months</b></td>
+    </tr>
+    <tr>
+      <td>From: <b>{{f.paymentFrom.value | date:'dd/MMM/yyyy'}}</b> </td>
+      <td>To: <b>{{f.paymentTo.value | date:'dd/MMM/yyyy'}}</b></td>
+    </tr>
+    <tr>
+      <td>Amount: <b>INR &nbsp;&nbsp;{{f.amount.value}}/- </b></td>
+      <td>In Words: <b>{{convertNumberToWords(f.amount.value)}} ONLY</b></td>
+    </tr>
+  </table>
+<br>
+<br>
+<h3 style="text-align:center;"><b><u>Rules & Regulations</u></b></h3>
+<ul>
+  <li>Fees once paid will not be refunded at any cost.</li>
+  <li>During your membership period, your are not allowed to transfer your membership to any third party.</li>
+  <li>All fees will be received strictly in advance.</li>
+  <li>Sweating towel is necessary and compulsory during your workout. Outside footwears are not allowed at any cost except your gym shoes.</li>
+  <li>Management will not be responsible for any loss or damage of your valuable belongings. The management holds the right to discontinue or restrict facilities without any prior notice.</li>
+  <li>Members will use equipments/ facilities with due care and caution. Rerack all weight plates, dumbbells, barbell after using it.</li>
+  <li>Members shall avail of the facilities at their own risk and liability. The management will not be liable for any accident or injuries to the member during the workout.</li>
+  <li>Members are liable to pay for any loss or damage of equipment/ facilities done by them. Members enrolling with any kind of medical history will do so at their own risk.</li>
+  <li>The management shall not be liable for any reoccurrence or fatalities use to the same.</li>
+  <li>Rights of admission/ renewal/ termination are reserved.</li>
+  <li>Optimum Fitness is open to members of all communities, irrespective of their caste of creed.</li>
+</ul>
+
+<h5 style="position: absolute;bottom: 8px;right: 16px;font-size: 18px;">Stamp with Signature</h5>
+</div>

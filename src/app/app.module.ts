@@ -18,7 +18,10 @@ import { AttendanceComponent } from './attendance/attendance.component';;
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ChartsModule } from 'ng2-charts';
-import { AttendanceCalendarComponent } from './attendance-detail/attendance-calendar/attendance-calendar.component';
+import { AttendanceCalendarComponent } from './attendance-detail/attendance-calendar/attendance-calendar.component';;
+import { PaymentAddComponent } from './payment-add/payment-add.component';;
+import { PaymentListComponent } from './payment-list/payment-list.component'
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -39,7 +42,9 @@ import { AttendanceCalendarComponent } from './attendance-detail/attendance-cale
         DashboardComponent ,
         AttendanceComponent,
         AttendanceDetailComponent,
-        AttendanceCalendarComponent
+        AttendanceCalendarComponent,
+        PaymentAddComponent,
+        PaymentListComponent  
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -9,6 +9,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
+import { PaymentAddComponent } from './payment-add/payment-add.component';
+import { PaymentListComponent } from './payment-list/payment-list.component';
 
 const routes: Routes = [
     { path: '', 
@@ -17,6 +19,19 @@ const routes: Routes = [
         { path: 'dashboard', 
           component: DashboardComponent, 
           canActivate: [AuthGuard]
+        },
+        { path: 'payments', 
+          canActivate: [AuthGuard],
+          children: [
+            { path: 'add', 
+              component: PaymentAddComponent, 
+              canActivate: [AuthGuard]
+            },
+            { path: 'list/:query', 
+              component: PaymentListComponent, 
+              canActivate: [AuthGuard]
+            }
+          ]
         },
         { path: 'attendance', 
           component: AttendanceDetailComponent, 
@@ -46,7 +61,7 @@ const routes: Routes = [
     
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '/dashboard' }
+    { path: '**', redirectTo: '/dashboard', canActivate: [AuthGuard] }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);

@@ -20,51 +20,67 @@
 
 <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">
-                <i class="fa fa-tachometer" aria-hidden="true"></i>
-                Dashboard
-              </a>
-            </li>            
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false" href="#customerSubmenu">
-                <i class="fa fa-users" aria-hidden="true"></i>
-                Customers
-              </a>
-              <ul class="collapse list-unstyled" id="customerSubmenu">
-                <li class="nav-item submenu">
-                  <a class="nav-link" routerLinkActive="active" routerLink="/customers/list/all">
-                    <i class="fa fa-list" aria-hidden="true"></i>
-                    List 
-                  </a>
-                </li>
-                <li class="nav-item submenu">
-                  <a class="nav-link"routerLinkActive="active" routerLink="/customers/add">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    Add 
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/attendance">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                Attendance
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/payment">
-                <i class="fa fa-inr" aria-hidden="true"></i>
-                <i class="fa fa-inr" aria-hidden="true"></i>
-                Payments
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div class="sidebar">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">
+                  <i class="fa fa-tachometer" aria-hidden="true"></i>
+                  Dashboard
+                </a>
+              </li>            
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false" href="#customerSubmenu">
+                  <i class="fa fa-users" aria-hidden="true"></i>
+                  Customers
+                </a>
+                <ul class="collapse list-unstyled" id="customerSubmenu">
+                  <li class="nav-item submenu">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/customers/list/all">
+                      <i class="fa fa-list" aria-hidden="true"></i>
+                      List 
+                    </a>
+                  </li>
+                  <li class="nav-item submenu">
+                    <a class="nav-link"routerLinkActive="active" routerLink="/customers/add">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      Add 
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/attendance">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                  Attendance
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown-toggle" data-toggle="collapse" aria-expanded="false" href="#paymentSubmenu">
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  Payments
+                </a>
+                <ul class="collapse list-unstyled" id="paymentSubmenu">
+                  <li class="nav-item submenu">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/payments/list/all">
+                      <i class="fa fa-list" aria-hidden="true"></i>
+                      List 
+                    </a>
+                  </li>
+                  <li class="nav-item submenu">
+                    <a class="nav-link"routerLinkActive="active" routerLink="/payments/add">
+                      <i class="fa fa-inr" aria-hidden="true"></i>
+                      Add 
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
   
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-4">
         <router-outlet></router-outlet>  

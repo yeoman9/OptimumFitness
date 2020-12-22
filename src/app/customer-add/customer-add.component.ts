@@ -57,6 +57,7 @@ export class CustomerAddComponent implements OnInit {
       calcDate = new Date(this.f.dateOfJoin.value);
       var newNum = calcDate.getMonth() + parseInt(month);
       calcDate.setMonth( newNum);
+      calcDate.setDate(calcDate.getDate() - 1);
       this.customerForm.patchValue({lastDate: formatDate(new Date(calcDate), 'yyyy-MM-dd', 'en')});
     }
     return;
