@@ -40,6 +40,7 @@ export class PaymentAddComponent implements OnInit {
       paymentFrom:['',Validators.required],
       paymentTo:['',Validators.required],
       amount:['',Validators.required],
+      mode:['',Validators.required],
       months:['']
   });
     

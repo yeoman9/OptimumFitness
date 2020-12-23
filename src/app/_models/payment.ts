@@ -7,4 +7,5 @@ export class Payment {
     creationDate: Date;
     amount: number;
     months: number;
+    mode: string;
 }

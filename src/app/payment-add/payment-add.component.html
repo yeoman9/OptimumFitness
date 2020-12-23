@@ -35,7 +35,7 @@
                 </div>
                 <div class="desc">Mo: {{selectedCustomer.mobile}}</div>
                 <div class="desc">{{selectedCustomer.email}}</div>
-                <div class="desc">Last Date: {{selectedCustomer.lastDate}}</div>
+                <div class="desc">Last Date: {{selectedCustomer.lastDate | date:'dd/MMM/yyyy'}}</div>
             </div>
             <div class="bottom">
               
@@ -80,6 +80,17 @@
                       <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
                           <div *ngIf="f.amount.errors">Amount is required</div>
                       </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="months">Payment Mode</label>
+                      <select class="selectpicker" formControlName="mode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mode.errors }" data-live-search="true">
+                          <option value="Cash">Cash</option>
+                          <option value="UPI">UPI</option>
+                          <option value="Cheque">Cheque</option>
+                      </select>
+                      <div *ngIf="submitted && f.mode.errors" class="invalid-feedback">
+                        <div *ngIf="f.mode.errors">Payment Mode is required</div>
+                    </div>
                     </div>
                   </div>
                   <button [disabled]="loading" class="btn btn-primary">
@@ -130,6 +141,9 @@
     <tr>
       <td>Amount: <b>INR &nbsp;&nbsp;{{f.amount.value}}/- </b></td>
       <td>In Words: <b>{{convertNumberToWords(f.amount.value)}} ONLY</b></td>
+    </tr>
+    <tr>
+      <td>Payment Mode: <b>{{f.mode.value}}</b></td>
     </tr>
   </table>
 <br>
