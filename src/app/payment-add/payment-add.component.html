@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="list-group" style="max-height: 200px; overflow-y:auto;">
-          <div (click)="showAtteandance(customer)" class="list-group-item clearfix" *ngFor="let customer of customerList">
+          <div (click)="showCustomer(customer)" class="list-group-item clearfix" *ngFor="let customer of customerList">
             <div class="float-left">
               {{customer.name}}
             </div>
@@ -78,14 +78,17 @@
                       <label for="amount">Amount (INR)</label>
                       <input input type="text" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
                       <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
-                          <div *ngIf="f.amount.errors">Date of join required</div>
+                          <div *ngIf="f.amount.errors">Amount is required</div>
                       </div>
-                  </div>
+                    </div>
                   </div>
                   <button [disabled]="loading" class="btn btn-primary">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Print
                   </button>
+                  <button name="prevPayments" id="prevPayments" (click)="viewPayments(selectedCustomer.id)" class="btn btn-secondary float-right">Previous Payments</button>
+                  <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div> 
+                  <div *ngIf="success" class="alert alert-success mt-3 mb-0">{{success}}</div> 
               </form>
           </div>        
       </div>

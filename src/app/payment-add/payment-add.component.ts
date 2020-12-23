@@ -63,12 +63,14 @@ export class PaymentAddComponent implements OnInit {
         });
     }
   }
-  showAtteandance(customer : Customer){
+  showCustomer(customer : Customer){
     this.customerList = [];    
     this.selectedCustomer = customer;
     this.search.nativeElement.value = customer.name;
   }
-
+  viewPayments(id : number){
+    this.router.navigate(["/payments/list",id]);
+  }
   onSubmit(paymentForm) {
     this.submitted = true;
     this.success='';

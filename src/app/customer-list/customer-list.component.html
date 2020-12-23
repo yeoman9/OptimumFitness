@@ -5,7 +5,6 @@
       <table id="dtBasicExample" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
-            <th class="text-center">Id</th>
             <th class="text-center">Photo</th>
             <th class="text-center">Name</th>
             <th class="text-center">Email</th>
@@ -16,7 +15,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let customer of customers">
-            <td class="pt-3-half" contenteditable="true">{{customer.id}}</td>
             <td class="pt-3-half" contenteditable="true">
               <img src="{{imagesUrl}}/{{customer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'" height="30" width="30" />
             </td>

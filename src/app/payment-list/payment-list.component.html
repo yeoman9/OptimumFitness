@@ -1,37 +1,93 @@
 <div class="card">
-    <h4 class="card-header">Customer List</h4>
+    <h4 class="card-header">Payments List</h4>
     <div class="card-body">
       <div id="table">      
-        <table id="dtBasicExample" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
+        <table id="paymentList" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
           <thead>
             <tr>
-              <th class="text-center">Name</th>
-              <th class="text-center">Photo</th>
+              <th class="text-center">Receipt Date</th>
+              <th class="text-center">Photo | Name</th>
               <th class="text-center">From</th>
               <th class="text-center">To</th>
-              <th class="text-center">Receipt Date</th>
               <th class="text-center">Amount</th>
               <th class="text-center">Print</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let payment of payments">
-              <td class="pt-3-half" contenteditable="true">{{payment.customer.name}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.creationDate | date:'dd/MMM/yyyy' }}</td>
               <td class="pt-3-half" contenteditable="true">
                 <img src="{{imagesUrl}}/{{payment.customer.avatar}}" onerror="this.src='../../assets/img/default_profile.png'" height="30" width="30" />
+                {{payment.customer.name}}
               </td>
-              <td class="pt-3-half" contenteditable="true">{{payment.paymentFrom}}</td>
-              <td class="pt-3-half" contenteditable="true">{{payment.paymentTo}}</td>
-              <td class="pt-3-half" contenteditable="true">{{payment.amount}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.paymentFrom | date:'dd/MMM/yyyy'}}</td>
+              <td class="pt-3-half" contenteditable="true">{{payment.paymentTo | date:'dd/MMM/yyyy'}}</td>
               <td class="pt-3-half" contenteditable="true">{{payment.amount}}</td>            
               <td>   
-                <button type="button" name="view" id="viewCustomer" (click)="viewCustomer(payment.customer.id)"
-                    class="btn btn-primary btn-rounded btn-sm my-0">View</button>
+                <button type="button" name="view" id="viewCustomer" (click)="printPayment(payment)"
+                    class="btn btn-primary btn-rounded btn-sm my-0">Print</button>
               </td>
             </tr>          
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+  <div *ngIf="selectedPayment" id="print-section" class="print" >
+    <br>
+    <br>
+    <div style="text-align: center;">
+      <u>Payment Receipt</u>
+    </div>
+    <div style="float: left;">
+      <img class="card-img-top bg-light" src="../../assets/img/logo.png" alt="Optimum Fitness" height="100" width="250">
+      <div>
+        <div style="margin-left: 50px;">Vinayak Gold Complex,</div>
+        <div style="margin-left: 25px;">Ajwa Road, Vadodara, Gujarat</div>
+      </div>
+    </div>
+    <div style="float: right; margin-top: 50px; margin-right: 50px;">
+        <diV>Reg Id : <b>{{selectedPayment.customer.pin}}</b></diV><br>
+        <div>Date : <b>{{ selectedPayment.creationDate | date:'dd/MMM/yyyy'}}</b></div>
+    </div> 
+    <div style="clear: both;"></div>
+    <br>
+    <br>
+    <br>
+    <table style="margin-left: auto; margin-right: auto; border-spacing: 0 1em;">
+      <tr>
+        <td>Name: <b>{{selectedPayment.customer.name}}</b></td>
+        <td>Contact: <b>{{selectedPayment.customer.mobile}}</b></td>
+      </tr>
+      <tr>
+        <td>Membership period: <b>{{selectedPayment.months}} months</b></td>
+      </tr>
+      <tr>
+        <td>From: <b>{{selectedPayment.paymentFrom| date:'dd/MMM/yyyy'}}</b> </td>
+        <td>To: <b>{{selectedPayment.paymentTo | date:'dd/MMM/yyyy'}}</b></td>
+      </tr>
+      <tr>
+        <td>Amount: <b>INR &nbsp;&nbsp;{{selectedPayment.amount}}/- </b></td>
+        <td>In Words: <b>{{convertNumberToWords(selectedPayment.amount.toString())}} ONLY</b></td>
+      </tr>
+    </table>
+  <br>
+  <br>
+  <h3 style="text-align:center;"><b><u>Rules & Regulations</u></b></h3>
+  <ul>
+    <li>Fees once paid will not be refunded at any cost.</li>
+    <li>During your membership period, your are not allowed to transfer your membership to any third party.</li>
+    <li>All fees will be received strictly in advance.</li>
+    <li>Sweating towel is necessary and compulsory during your workout. Outside footwears are not allowed at any cost except your gym shoes.</li>
+    <li>Management will not be responsible for any loss or damage of your valuable belongings. The management holds the right to discontinue or restrict facilities without any prior notice.</li>
+    <li>Members will use equipments/ facilities with due care and caution. Rerack all weight plates, dumbbells, barbell after using it.</li>
+    <li>Members shall avail of the facilities at their own risk and liability. The management will not be liable for any accident or injuries to the member during the workout.</li>
+    <li>Members are liable to pay for any loss or damage of equipment/ facilities done by them. Members enrolling with any kind of medical history will do so at their own risk.</li>
+    <li>The management shall not be liable for any reoccurrence or fatalities use to the same.</li>
+    <li>Rights of admission/ renewal/ termination are reserved.</li>
+    <li>Optimum Fitness is open to members of all communities, irrespective of their caste of creed.</li>
+  </ul>
+  
+  <h5 style="position: absolute;bottom: 8px;right: 16px;font-size: 18px;">Stamp with Signature</h5>
   </div>
   

@@ -1,0 +1,4 @@
+.print {
+  /* hide the printing component from @media screen */
+  display: none;
+}
