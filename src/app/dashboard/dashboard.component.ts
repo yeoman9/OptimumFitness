@@ -79,6 +79,9 @@ export class DashboardComponent implements OnInit {
           if(label == 'Active'){
             this.router.navigate(["/customers/list/active"]);
           }
+          if(label == 'Due'){
+            this.router.navigate(["/customers/list/due"]);
+          }
         }
        }
   }
