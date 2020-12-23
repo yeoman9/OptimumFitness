@@ -74,10 +74,6 @@ export class PaymentAddComponent implements OnInit {
     this.success='';
     this.error='';
     // stop here if form is invalid
-    if(new Date(this.selectedCustomer.lastDate).getTime() >= new Date(this.f.paymentTo.value).getTime() ){
-      alert("The payment to dateshould be greater than current last date.");
-      return;
-    }
     if (this.paymentForm.invalid) {
         return;
     }  
