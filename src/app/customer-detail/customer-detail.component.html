@@ -112,7 +112,13 @@
                     <div class="background"></div>
                   </label>                  
                   <input id="docImage" name="docImage" type="file" (change)="uploadDocImage($event)">
-            </div>  
+              </div>  
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="deleted">Deleted</label>
+                    <input type="checkbox" formControlName="deleted" class="form-control-md col-md-1" />
+                </div>
             </div>
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

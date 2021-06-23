@@ -25,6 +25,7 @@ export class CustomerDetailComponent implements OnInit {
   avatar: File;
   avatarUrl: any;
   docImageUrl: any;
+  deleted: boolean;
   
   constructor( 
     private customerService: CustomerService,
@@ -48,7 +49,8 @@ export class CustomerDetailComponent implements OnInit {
       kycType:[''],
       docNumber:[''],
       avatar:[''],
-      docImage:['']
+      docImage:[''],
+      deleted:[],
   });
 
     this.route.params.subscribe(params => {

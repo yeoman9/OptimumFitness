@@ -12,4 +12,5 @@
 	docImage: string;
 	kycType: string;
 	docNumber: string;
+    deleted: boolean;
 }
