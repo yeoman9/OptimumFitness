@@ -23,7 +23,7 @@ export class PaymentListComponent implements OnInit {
   imagesUrl : string =environment.apiUrl+'/images';
   dtOptions: DataTables.Settings = {
     columnDefs: [
-      { orderable: true, orderDataType:'desc', targets: 0 },
+      { orderable: true, type: 'date', orderDataType:'desc', targets: 0 },
       { orderable: false, targets: '_all' },
   ],
   order:[[0, 'desc']]
