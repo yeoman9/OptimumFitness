@@ -9,8 +9,12 @@ import { FormGroup } from '@angular/forms';
 export class DashboardService {
   constructor(private http: HttpClient) { }
   
-  getData() {
-    return this.http.post<any>(`${environment.apiUrl}/apis/v1/dashboard/data`,{});
+  getCustomerCount() {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/dashboard/customerCount`,{});
+  }
+
+  getPaymentCount() {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/dashboard/paymentCount`,{});
   }
   
 }

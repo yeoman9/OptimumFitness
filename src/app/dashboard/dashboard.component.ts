@@ -3,11 +3,12 @@ import { DashboardService, AuthenticationService } from '@app/_services';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Dashboard } from '@app/_models';
+import { CustomerCount } from '@app/_models';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label, Color } from 'ng2-charts';
 import 'chart.js';
 import 'chart.piecelabel.js';
+import { paymentCount } from '@app/_models/paymentCount';
 
 
 @Component({
@@ -16,7 +17,8 @@ import 'chart.piecelabel.js';
   styleUrls:['./dashboard.css']
 })
 export class DashboardComponent implements OnInit {
-  dashboard: Dashboard;
+  customerCount: CustomerCount;
+  paymentCount: paymentCount;
   loading = false;
   error = '';
   success = '';
@@ -27,17 +29,30 @@ export class DashboardComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.dashboardService.getData()
+    this.dashboardService.getCustomerCount()
     .pipe(first())
     .subscribe(
         data => {
             this.loading = false;
-            this.dashboard = data;
-            this.doughnutChartData = [[this.dashboard.activeCustomers, this.dashboard.inActiveCustomers]];
+            this.customerCount = data;
+            this.doughnutChartData = [[this.customerCount.activeCustomers, this.customerCount.inActiveCustomers]];
         },
         error => {
             this.error = error;
-        });
+      });
+    
+    this.dashboardService.getPaymentCount()
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.loading = false;
+            this.paymentCount = data;
+        },
+        error => {
+            this.error = error;
+      });
+      
+
   }
   doughnutChartType: ChartType = 'doughnut';
   doughnutChartLabels: Label[] = ['Active', 'Due'];
