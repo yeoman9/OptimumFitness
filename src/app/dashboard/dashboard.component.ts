@@ -3,12 +3,14 @@ import { DashboardService, AuthenticationService } from '@app/_services';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { CustomerCount } from '@app/_models';
+import { CustomerCount, PaymentCount, MonthWisePayment } from '@app/_models';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label, Color } from 'ng2-charts';
+
+
 import 'chart.js';
 import 'chart.piecelabel.js';
-import { paymentCount } from '@app/_models/paymentCount';
+import Utils from '@app/_helpers/utils';
 
 
 @Component({
@@ -18,7 +20,8 @@ import { paymentCount } from '@app/_models/paymentCount';
 })
 export class DashboardComponent implements OnInit {
   customerCount: CustomerCount;
-  paymentCount: paymentCount;
+  paymentCount: PaymentCount;
+  monthWisePayments: MonthWisePayment[];
   loading = false;
   error = '';
   success = '';
@@ -35,7 +38,7 @@ export class DashboardComponent implements OnInit {
         data => {
             this.loading = false;
             this.customerCount = data;
-            this.doughnutChartData = [[this.customerCount.activeCustomers, this.customerCount.inActiveCustomers]];
+            this.doughnutChartData = [[this.customerCount.activeCustomers, this.customerCount.inActiveCustomers, this.customerCount.aboutTodueCCustomers]];
         },
         error => {
             this.error = error;
@@ -52,19 +55,38 @@ export class DashboardComponent implements OnInit {
             this.error = error;
       });
       
+    this.dashboardService.getMonthWiseCollection( new Date().getFullYear() )
+    .pipe(first())
+    .subscribe(
+        data => {
+            this.loading = false;
+            this.monthWisePayments = data;
+            var i = 1; 
+            for (let m of this.monthWisePayments){
+              
+              this.barChartLabels.push(Utils.MonthsMap.get(m.month));
+              this.monthlyData.push(m.total);     
+                       
+            }
+        },
+        error => {
+            this.error = error;
+      });
 
   }
   doughnutChartType: ChartType = 'doughnut';
-  doughnutChartLabels: Label[] = ['Active', 'Due'];
+  doughnutChartLabels: Label[] = ['Active', 'Due', 'About to Due'];
   doughnutChartData: MultiDataSet = [];
   chartColors: Color[] = [{
     backgroundColor: [
       "#86C1FB",
-      "#FFA1B5"      
+      "#FFA1B5",
+      "#FBFA86"     
   ],
   hoverBackgroundColor: [
     "#36A2EB",  
-    "#FF6384"      
+    "#FF6384",
+    "#EBD936"     
   ]}
 
   ];
@@ -78,6 +100,17 @@ export class DashboardComponent implements OnInit {
     }
   }
   
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels : Label[] = [];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public monthlyData = [];
+  public barChartData = [
+    {data: this.monthlyData, label: 'Monthly Collection'}
+  ];
   
 
   chartClicked(e){
@@ -96,6 +129,9 @@ export class DashboardComponent implements OnInit {
           }
           if(label == 'Due'){
             this.router.navigate(["/customers/list/due"]);
+          }
+          if(label == 'About to Due'){
+            this.router.navigate(["/customers/list/aboutToDue"]);
           }
         }
        }

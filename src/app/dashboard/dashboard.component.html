@@ -2,7 +2,7 @@
   
     <div class="card text-center shadow mb-4">
         <!-- Card Body -->
-      <div class="card-body">
+      <div class="card-body" *ngIf="customerCount">
           <h5 class="card-title">Total Customers : {{customerCount.totalCustomers}}</h5>     
           <div class="chart-wrapper">
             <canvas baseChart 
@@ -20,17 +20,36 @@
   
     <div class="card text-center shadow mb-4">
         <!-- Card Body -->
-      <div class="card-body">
-          <br>
+      <div class="card-body" *ngIf="paymentCount">
+          
           <h5 class="card-title" style="color : pink">Today : <b style="color : rgb(230, 136, 151)">{{paymentCount.todayCount}} </b> Entries</h5> 
           <h3 class="card-title" style="color : rgb(230, 136, 151)">  {{paymentCount.todayCollection | currency:'INR':'symbol-narrow':'4.2-2'}}</h3>
-          <br><br>
+         
           <h5 class="card-title" style="color : rgb(193, 193, 236)">Weekly : <b style="color : rgb(115, 115, 175)">{{paymentCount.weeklyCount}} </b> Entries</h5>
           <h3 class="card-title" style="color : rgb(115, 115, 175)"> {{paymentCount.weeklyCollection | currency:'INR':'symbol-narrow':'4.2-2'}}</h3>
-          <br><br>
+          
           <h5 class="card-title" style="color : rgb(139, 204, 199)">Monthly : <b style="color : rgb(62, 143, 105)">{{paymentCount.monthlyCount}}</b> Entries</h5>
           <h3 class="card-title" style="color : rgb(62, 143, 105)"> {{paymentCount.monthlyCollection | currency:'INR':'symbol-narrow':'4.2-2'}}</h3>                    
       </div>
     </div>
+
+    <div class="card text-center shadow mb-4">
+      <!-- Card Body -->
+    <div class="card-body" >
+        <h5 class="card-title">Month wise collection</h5>     
+        <div class="chart-wrapper">
+          <canvas baseChart 
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+            [colors]="chartColors"
+            [options]="chartOptions"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+    </div>
+  </div>
    
 </div>

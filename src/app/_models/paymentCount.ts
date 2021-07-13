@@ -1,4 +1,4 @@
-export class paymentCount {
+export class PaymentCount {
     todayCount: number;
     weeklyCount: number;
     monthlyCount: number;

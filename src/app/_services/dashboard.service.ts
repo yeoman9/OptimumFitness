@@ -16,5 +16,9 @@ export class DashboardService {
   getPaymentCount() {
     return this.http.post<any>(`${environment.apiUrl}/apis/v1/dashboard/paymentCount`,{});
   }
+
+  getMonthWiseCollection(year: number) {
+    return this.http.post<any>(`${environment.apiUrl}/apis/v1/dashboard/monthWiseCollection`,year);
+  }
   
 }

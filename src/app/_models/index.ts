@@ -5,3 +5,4 @@ export * from './customer';
 export * from './customerCount';
 export * from './payment';
 export * from './paymentCount';
+export * from './monthWisePayment';

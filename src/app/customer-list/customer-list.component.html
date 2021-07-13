@@ -10,6 +10,7 @@
             <th class="text-center">Email</th>
             <th class="text-center">Mobile</th>
             <th class="text-center">PIN</th>
+            <th class="text-center">Last Date</th>
             <th class="text-center">View</th>
           </tr>
         </thead>
@@ -21,7 +22,8 @@
             <td class="pt-3-half">{{customer.name}}</td>
             <td class="pt-3-half">{{customer.email}}</td>
             <td class="pt-3-half">{{customer.mobile}}</td>
-            <td class="pt-3-half">{{customer.pin}}</td>            
+            <td class="pt-3-half">{{customer.pin}}</td>  
+            <td class="pt-3-half">{{customer.lastDate | date:'dd/MMM/yyyy'}}</td>          
             <td>   
               <button type="button" name="view" id="viewCustomer" (click)="viewCustomer(customer.id)"
                   class="btn btn-primary btn-rounded btn-sm my-0">View</button>
