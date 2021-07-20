@@ -1,4 +1,4 @@
-﻿export * from './authToken';
+﻿export * from './currentUser';
 export * from './user';
 export * from './userInfo';
 export * from './customer';
@@ -6,3 +6,5 @@ export * from './customerCount';
 export * from './payment';
 export * from './paymentCount';
 export * from './monthWisePayment';
+export * from './authority';
+export * from './role';

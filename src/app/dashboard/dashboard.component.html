@@ -1,4 +1,4 @@
-<div class="card-deck">
+<div *ngIf="authenticationService.isAdmin" class="card-deck">
   
     <div class="card text-center shadow mb-4">
         <!-- Card Body -->
@@ -50,6 +50,6 @@
           </canvas>
         </div>
     </div>
-  </div>
+    </div>
    
 </div>

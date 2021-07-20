@@ -20,8 +20,17 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService
     ) { 
         // redirect to home if already logged in
-        if (this.authenticationService.authTokenValue) { 
-            this.router.navigate(['/dashboard']);
+        if (this.authenticationService.currentUserValue) { 
+            if(this.authenticationService.isAdmin){
+                this.router.navigate(['/dashboard']);
+            }
+            else{
+                this.router.navigate(['/']);
+            }
+            
+        }
+        else { 
+            this.router.navigate(['/login']);
         }
     }
 
@@ -31,8 +40,7 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required]
         });
 
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';     
     }
 
     // convenience getter for easy access to form fields
@@ -51,7 +59,11 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    if(this.authenticationService.isAdmin && this.returnUrl == '/'){
+                        this.router.navigate(['/dashboard']);
+                    }else{
+                        this.router.navigate([this.returnUrl]);
+                    }
                 },
                 error => {
                     this.error = error;

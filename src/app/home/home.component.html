@@ -24,7 +24,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
-              <li class="nav-item">
+              <li *ngIf="authenticationService.isAdmin" class="nav-item">
                 <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">
                   <i class="fa fa-tachometer" aria-hidden="true"></i>
                   Dashboard
