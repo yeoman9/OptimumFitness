@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService
     this.dashboardService.getCustomerCount()
     .pipe(first())
     .subscribe(
