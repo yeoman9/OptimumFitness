@@ -1,6 +1,16 @@
 <div class="card">
   <h4 class="card-header">Customer List</h4>
   <div class="card-body">
+    <div>
+      <button type="button" name="active" id="active" (click)="btnClick('active')"
+                  class="btn btn-primary btn-rounded btn-sm mr-2">Active</button>
+      <button type="button" name="aboutToDue" id="aboutToDue" (click)="btnClick('aboutToDue')"
+                  class="btn btn-warning btn-rounded btn-sm mr-2">About to Due</button>
+      <button type="button" name="due" id="due" (click)="btnClick('due')"
+                  class="btn btn-danger btn-rounded btn-sm mr-2">Due</button>
+    </div>
+    <br>
+    
     <div id="table">      
       <table id="dtBasicExample" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>

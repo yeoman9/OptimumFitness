@@ -23,26 +23,29 @@ export class CustomerListComponent implements OnInit {
     private customerService: CustomerService,
     private route: ActivatedRoute,
     private router: Router
-    ) { }
+    ) { 
+        route.params.subscribe(params => {
+        // put the code from `ngOnInit` here
+        var datatable = $('#dtBasicExample').DataTable();
+              
+              //datatable reloading 
+                datatable.destroy();
+        this.query = params['query'];
+        this.customerService.listCustomers(this.query)
+        .pipe(first())
+        .subscribe(
+            data => {
+                this.loading = false;            
+                this.customers = data;
+                this.dtTrigger.next();
+            },
+            error => {
+                this.error = error;
+            });
+          });
+    }
     
-  ngOnInit() {
-    
-    this.route.params.subscribe(params => {
-      this.query = params['query'];
-    });
-    this.customerService.listCustomers(this.query)
-    .pipe(first())
-    .subscribe(
-        data => {
-            this.loading = false;            
-            this.customers = data;
-            this.dtTrigger.next();
-        },
-        error => {
-            this.error = error;
-        });
-        
-  }
+  ngOnInit() { }
 
   viewCustomer(id : number){
     this.router.navigate(["/customers/view",id]);
@@ -50,6 +53,9 @@ export class CustomerListComponent implements OnInit {
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
+  }
+  btnClick(id){
+    this.router.navigate(["/customers/list/"+id]);
   }
 
 }
