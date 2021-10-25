@@ -1,6 +1,17 @@
 <div class="card">
     <h4 class="card-header">Payments List</h4>
     <div class="card-body">
+      <div>
+        <button type="button" name="Today" id="today" (click)="btnClick('todayData')"
+                    class="btn btn-outline-info btn-rounded btn-sm mr-2">Today</button>
+        <button type="button" name="This Week" id="thisWeek" (click)="btnClick('weeklyData')"
+                    class="btn btn-outline-info btn-rounded btn-sm mr-2">This Week</button>
+        <button type="button" name="This Month" id="thisMonth" (click)="btnClick('monthlyData')"
+                    class="btn btn-outline-info btn-rounded btn-sm mr-2">This Month</button>
+        <button type="button" name="All" id="all" (click)="btnClick('all')"
+                    class="btn btn-outline-info btn-rounded btn-sm mr-2">All</button>
+      </div>
+      <br>
       <div id="table">      
         <table id="paymentList" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-responsive-md table-striped text-center">
           <thead>

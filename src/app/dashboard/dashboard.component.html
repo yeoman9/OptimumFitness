@@ -43,10 +43,9 @@
           [labels]="barChartLabels"
           [options]="barChartOptions"
           [legend]="barChartLegend"
-          [chartType]="barChartType">
-            [colors]="chartColors"
-            [options]="chartOptions"
-            (chartClick)="chartClicked($event)">
+          [chartType]="barChartType"
+          [options]="chartOptions"
+          (chartClick)="barChartClicked($event)">
           </canvas>
         </div>
     </div>

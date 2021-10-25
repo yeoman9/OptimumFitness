@@ -34,26 +34,31 @@ export class PaymentListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cdRef:ChangeDetectorRef
-    ) { }
-    
-  ngOnInit() {
-    
-    this.route.params.subscribe(params => {
+    ) {
+
+    route.params.subscribe(params => {
+
+      var datatable = $('#paymentList').DataTable();
+      //datatable reloading 
+      datatable.destroy();
       this.query = params['query'];
-    });
-    this.paymentService.listPayment(this.query)
-    .pipe(first())
-    .subscribe(
-        data => {
-            this.loading = false;            
+
+      this.paymentService.listPayment(this.query)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.loading = false;
             this.payments = data;
             this.dtTrigger.next();
-        },
-        error => {
+          },
+          error => {
             this.error = error;
-        });
-        
+          });
+    });
+
   }
+    
+ngOnInit() {  }
   
 printPayment(payment : Payment){
   
@@ -165,5 +170,9 @@ printPayment(payment : Payment){
          words_string = words_string.split("  ").join(" ");
      }
      return words_string;
+ }
+
+ btnClick(id){
+  this.router.navigate(["/payments/list/"+id]);
  }
 }
